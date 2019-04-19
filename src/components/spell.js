@@ -4,7 +4,7 @@ export default class Spell extends Component {
     state = {
         'message': '',
         'voices': [{ name: 999 }],
-        'dict': ['harmonium', 'umbrella', 'basketball'],
+        'dict': ['harmonium', 'umbrella', 'basketball','Bangladesh','transylvania','football'],
         'selected': -1,
         'player_msg': ''
     };
@@ -43,11 +43,20 @@ export default class Spell extends Component {
     }
 
     checkMessage = () => {
-        if (this.state.dict[this.state.selected] === this.state.message) {
-            var msg = 'Well Done';
-        } else {
-            var msg = 'Wrong Answer. Try Again';
+        if( this.state.selected===-1 ){
+            var msg = 'You have to listen first';
         }
+        else if( this.state.message==="" ){
+            var msg = "You haven't typed anything";
+        }
+        else{
+            if (this.state.dict[this.state.selected] === this.state.message) {
+                var msg = 'Well Done';
+            } else {
+                var msg = 'Wrong Answer. Try Again';
+            }
+        }
+        
         this.speakOut(msg);
         this.setState({
             'player_msg': msg
